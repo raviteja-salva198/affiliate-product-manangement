@@ -7,6 +7,7 @@ const UserDashboard=({ user }) =>{
     <DashboardContainer>
       <h2>User Dashboard</h2>
       <p>Welcome, {user.username}!</p>
+      <div>This is the change i made</div>
       {/* Add more user-specific content here */}
     </DashboardContainer>
   );
