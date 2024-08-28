@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ProductManagement from "../ProductManagement/ProductManagement.jsx";
-import CommissionControl from "../CommissionControl/CommissionControl.js";
+import ProductManagement from "../ProductManagement/ProductManagement";
+import CommissionControl from "../CommissionControl/CommissionControl";
 import Announcements from "../Announcements/Announcements.jsx";
 import {
   DashboardContainer,

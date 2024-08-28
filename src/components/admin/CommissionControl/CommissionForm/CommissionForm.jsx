@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form, Select, ErrorMessage, Button } from "./CommissionForm.style";
+import {
+  Form,
+  Select,
+  ErrorMessage,
+  Button,
+  Input,
+} from "./CommissionForm.style";
 
 const CommissionForm = ({
   onSubmit,
@@ -8,6 +14,7 @@ const CommissionForm = ({
   setSelectedOption,
   options,
 }) => {
+  const [isCustom, setIsCustom] = useState(false);
   const {
     register,
     handleSubmit,
@@ -18,10 +25,17 @@ const CommissionForm = ({
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
     reset();
+    setIsCustom(false);
+  };
+
+  const handleCustomOption = (e) => {
+    setIsCustom(e.target.value === "custom");
+    reset();
   };
 
   const onSubmitForm = (data) => {
-    onSubmit(data.type, parseFloat(data.rate));
+    const option = isCustom ? data.customOption : data.option;
+    onSubmit(option, parseFloat(data.rate));
     reset();
   };
 
@@ -41,14 +55,42 @@ const CommissionForm = ({
       </div>
 
       <div>
-        <Select {...register("option", { required: "Option is required" })}>
+        <Select
+          {...register("option", { required: "Option is required" })}
+          onChange={handleCustomOption}
+        >
           {options.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>
           ))}
+          <option value="custom">Add Custom</option>
         </Select>
-        {errors.option && <ErrorMessage>{errors.option.message}</ErrorMessage>}
+        {isCustom && (
+          <Input
+            {...register("customOption", {
+              required: "Custom option is required",
+            })}
+            placeholder="Enter custom occupation"
+          />
+        )}
+        {errors.option && !isCustom && (
+          <ErrorMessage>{errors.option.message}</ErrorMessage>
+        )}
+        {errors.customOption && isCustom && (
+          <ErrorMessage>{errors.customOption.message}</ErrorMessage>
+        )}
+      </div>
+
+      <div>
+        <Input
+          {...register("rate", {
+            required: "Rate is required",
+            valueAsNumber: true,
+          })}
+          placeholder="Enter commission rate"
+        />
+        {errors.rate && <ErrorMessage>{errors.rate.message}</ErrorMessage>}
       </div>
 
       <Button type="submit">Set Rate</Button>

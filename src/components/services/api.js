@@ -50,9 +50,10 @@ export const fetchCommissionRates = async () => {
 export const updateCommissionRate = async (occupation, rate) => {
   return new Promise((resolve) => {
     dummyCommissionRates[occupation] = rate;
-    setTimeout(() => resolve(rate), 500);
+    setTimeout(() => resolve({ [occupation]: rate }), 500);
   });
 };
+
 
 export const fetchAnnouncements = async () => {
   return new Promise((resolve) => {

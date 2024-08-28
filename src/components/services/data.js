@@ -1,4 +1,4 @@
-// Dummy Products
+// Updated Dummy Products
 export const dummyProducts = [
   {
     id: 1,
@@ -8,10 +8,10 @@ export const dummyProducts = [
     image:
       "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQTQ3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1687660671363",
     commissionRates: {
-      Affiliate: 10,
-      Retailer: 15,
-      Wholesaler: 20,
-      Distributor: 25,
+      Student: 10,
+      Professional: 15,
+      "Social Media Influencer": 20,
+      "Marketing Agent": 25,
     },
   },
   {
@@ -22,10 +22,10 @@ export const dummyProducts = [
     image:
       "https://c.media-amazon.com/images/I/41p0PLiCyeL._SX300_SY300_QL70_FMwebp_.jpg",
     commissionRates: {
-      Affiliate: 5,
-      Retailer: 8,
-      Wholesaler: 12,
-      Distributor: 15,
+      Student: 5,
+      Professional: 8,
+      "Social Media Influencer": 12,
+      "Marketing Agent": 15,
     },
   },
   {
@@ -36,10 +36,10 @@ export const dummyProducts = [
     image:
       "https://c.media-amazon.com/images/I/41IJiQ0lfBL._SX300_SY300_QL70_FMwebp_.jpg",
     commissionRates: {
-      Affiliate: 15,
-      Retailer: 20,
-      Wholesaler: 25,
-      Distributor: 30,
+      Student: 15,
+      Professional: 20,
+      "Social Media Influencer": 25,
+      "Marketing Agent": 30,
     },
   },
   {
@@ -50,10 +50,10 @@ export const dummyProducts = [
     image:
       "https://c.media-amazon.com/images/I/41l62Htp4XL._SX300_SY300_QL70_FMwebp_.jpg",
     commissionRates: {
-      Affiliate: 8,
-      Retailer: 12,
-      Wholesaler: 18,
-      Distributor: 22,
+      Student: 8,
+      Professional: 12,
+      "Social Media Influencer": 18,
+      "Marketing Agent": 22,
     },
   },
   {
@@ -63,20 +63,20 @@ export const dummyProducts = [
     price: 129,
     image: "https://c.media-amazon.com/images/I/61tMoVGYglL._SL1500_.jpg",
     commissionRates: {
-      Affiliate: 12,
-      Retailer: 18,
-      Wholesaler: 24,
-      Distributor: 28,
+      Student: 12,
+      Professional: 18,
+      "Social Media Influencer": 24,
+      "Marketing Agent": 28,
     },
   },
 ];
 
-// You might also want to add this for default commission rates:
+// Updated Default Commission Rates
 export const dummyCommissionRates = {
-  Affiliate: 10,
-  Retailer: 15,
-  Wholesaler: 20,
-  Distributor: 25,
+  Student: 10,
+  Professional: 15,
+  "Social Media Influencer": 20,
+  "Marketing Agent": 25,
 };
 
 // Dummy Announcements

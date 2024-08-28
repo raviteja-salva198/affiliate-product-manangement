@@ -1,43 +1,18 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
-import CommissionForm from "../../../components/admin/CommissionControl/CommissionForm/CommissionForm";
-import CommissionRatesList from "../../../components/admin/CommissionControl/CommissionRates/CommissionRatesList";
+import CommissionForm from "../../../components/admin/CommissionControl/CommissionForm/CommissionForm.jsx";
+import CommissionRatesList from "../../../components/admin/CommissionControl/CommissionRates/CommissionRatesList.jsx";
 import {
   fetchCommissionRates,
   fetchProducts,
   fetchUsers,
   updateCommissionRate,
 } from "../../../components/services/api.js";
-
-const CommissionControlContainer = styled.div`
-  background-color: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-
-  @media (min-width: 768px) {
-    width: auto;
-    padding: 3rem;
-  }
-`;
-
-const Title = styled.h2`
-  color: #333;
-  margin-bottom: 1.5rem;
-
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const LoaderContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-`;
+import {
+  CommissionControlContainer,
+  Title,
+  LoaderContainer,
+} from "./CommissionControl.style.js";
 
 const CommissionControl = () => {
   const [commissionRates, setCommissionRates] = useState({});
@@ -53,12 +28,11 @@ const CommissionControl = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch different data based on selected option
     const fetchData = async () => {
       setIsLoading(true);
       let data = [];
       if (selectedOption === "occupation") {
-        data = ["Affiliate", "Retailer", "Wholesaler", "Distributor"]; // Sample occupation options
+        data = Object.keys(commissionRates);
       } else if (selectedOption === "product") {
         const products = await fetchProducts();
         data = products.map((product) => product.name);
@@ -71,14 +45,18 @@ const CommissionControl = () => {
     };
 
     fetchData();
-  }, [selectedOption]);
+  }, [selectedOption, commissionRates]);
 
   const handleUpdateCommissionRate = async (key, rate) => {
-    const updated = await updateCommissionRate(key, rate);
+    const updatedRate = await updateCommissionRate(key, rate);
     setCommissionRates((prevRates) => ({
       ...prevRates,
-      [key]: updated[key],
+      ...updatedRate,
     }));
+
+    if (selectedOption === "occupation" && !options.includes(key)) {
+      setOptions((prevOptions) => [...prevOptions, key]);
+    }
   };
 
   return (
