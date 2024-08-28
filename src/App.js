@@ -1,50 +1,24 @@
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import LoginPage from "./pages/user/LoginPage";
-import SignupPage from "./pages/user/SignupPage";
-import AdminDashboard from "./components/admin/AdminDashboard";
-import UserDashboard from "./components/user/UserDashboard";
-import { AppContainer } from "./App.style";
+import React from "react";
+import styled from "styled-components";
+import AdminDashboard from "./Pages/Admin/Dashboard/AdminDashboard";
 
-const App = () => {
-  const [user, setUser] = useState(null);
+const AppContainer = styled.div`
+  font-family: "Arial", sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding: 1rem;
 
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+`;
+
+function App() {
   return (
-    <Router>
-      <AppContainer>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<LoginPage setUser={setUser} />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route
-            path="/admin"
-            element={
-              user && user.isAdmin ? (
-                <AdminDashboard user={user} />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          />
-          <Route
-            path="/user"
-            element={
-              user && !user.isAdmin ? (
-                <UserDashboard user={user} />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          />
-        </Routes>
-      </AppContainer>
-    </Router>
+    <AppContainer>
+      <AdminDashboard />
+    </AppContainer>
   );
-};
+}
 
 export default App;
