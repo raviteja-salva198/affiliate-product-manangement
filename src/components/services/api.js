@@ -1,5 +1,11 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import {
+  dummyProducts,
+  dummyCommissionRates,
+  dummyAnnouncements,
+  dummyUsers
+} from "./data";
 
 const API_URL = 'http://localhost:22000';  
 
@@ -72,6 +78,44 @@ export const deleteProduct = async (id) => {
 };
 
 
+export const fetchCommissionRates = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(dummyCommissionRates), 500);
+  });
+};
+
+export const updateCommissionRate = async (occupation, rate) => {
+  return new Promise((resolve) => {
+    dummyCommissionRates[occupation] = rate;
+    setTimeout(() => resolve({ [occupation]: rate }), 500);
+  });
+};
+
+
+export const fetchAnnouncements = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(dummyAnnouncements), 500);
+  });
+};
+
+export const createAnnouncement = async (announcement) => {
+  return new Promise((resolve) => {
+    const newAnnouncement = {
+      ...announcement,
+      id: Date.now(),
+      date: new Date().toISOString().split("T")[0],
+    };
+    dummyAnnouncements.push(newAnnouncement);
+    setTimeout(() => resolve(newAnnouncement), 500);
+  });
+};
+
+
+export const fetchUsers = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(dummyUsers), 500);
+  });
+};
 
 
 
