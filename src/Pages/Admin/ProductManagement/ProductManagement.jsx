@@ -45,16 +45,16 @@ const ProductManagement = () => {
   };
 
   const handleEditProduct = async (updatedProduct) => {
-    const updated = await updateProduct(productToEdit.id, updatedProduct);
-    setProducts(products.map((p) => (p.id === productToEdit.id ? updated : p)));
+    const updated = await updateProduct(productToEdit._id, updatedProduct);
+    setProducts(products.map((p) => (p._id === productToEdit._id ? updated : p)));
     notifyAffiliates("Product updated");
     setIsEditingProduct(false);
     setProductToEdit(null);
   };
 
-  const handleRemoveProduct = async (id) => {
-    await deleteProduct(id);
-    setProducts(products.filter((p) => p.id !== id));
+  const handleRemoveProduct = async (_id) => {
+    await deleteProduct(_id);
+    setProducts(products.filter((p) => p._id !== _id));
     notifyAffiliates("Product removed");
   };
 

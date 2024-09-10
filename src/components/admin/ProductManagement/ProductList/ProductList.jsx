@@ -15,14 +15,14 @@ const ProductList = ({ products, onEdit, onRemove }) => {
   return (
     <List>
       {products.map((product) => (
-        <ListItem key={product.id}>
+        <ListItem key={product._id}>
           <img
-            src={product.image}
-            alt={product.name}
+            src={product.imageUrl}
+            alt={product.courseName}
             style={{ width: "100px", height: "100px", objectFit: "cover" }}
           />
-          <ProductName>{product.name}</ProductName>
-          <ProductInfo>Price: Rs.{product.price}</ProductInfo>
+          <ProductName>{product.courseName}</ProductName>
+          <ProductInfo>Price: Rs.{product.pricing}</ProductInfo>
           <CommissionTable>
             <thead>
               <tr>
@@ -43,7 +43,7 @@ const ProductList = ({ products, onEdit, onRemove }) => {
           </CommissionTable>
           <ButtonGroup>
             <EditButton onClick={() => onEdit(product)}>Edit</EditButton>
-            <RemoveButton onClick={() => onRemove(product.id)}>
+            <RemoveButton onClick={() => onRemove(product._id)}>
               Remove
             </RemoveButton>
           </ButtonGroup>
